@@ -19,7 +19,41 @@
         "command": "vscode-todo-highlighter.todoHighlighter",
         "title": "Todo Highlighter"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Todo Highlighter", 
+      "properties": {
+        "todoHighlighter.decorations.todo": {
+          "type": "object",
+          "description": "Highlight decoration of todos", 
+          "default": {
+            "color": "#80de1f"
+          }
+        },
+        "todoHighlighter.decorations.fixme": {
+          "type": "object",
+          "description": "Highlight decoration of things that need to be fixed", 
+          "default": {
+            "color": "#ffff00"
+          }
+        },
+        "todoHighlighter.decorations.task": {
+          "type": "object",
+          "description": "Highlight decoration of tasks", 
+          "default": {
+            "color": "#1f7ade"
+          }
+        },
+        "todoHighlighter.decorations.assignment": {
+          "type": "object",
+          "description": "Highlight decoration of assignments", 
+          "default": {
+            "color": "#1f7ade"
+          }
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",

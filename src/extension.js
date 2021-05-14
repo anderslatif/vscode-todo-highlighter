@@ -9,6 +9,13 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+	const workspace = vscode.workspace;
+	const window = vscode.window;
+
+	const settings = workspace.getConfiguration('todoHighlighter');
+	const regexConfiguraitons = settings.regex;
+	const decorationStyles = settings.get("decorations");
+	
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
@@ -22,25 +29,30 @@ function activate(context) {
 	context.subscriptions.push(disposable);
 
 
-	vscode.workspace.onDidChangeTextDocument((event) => {
-		const window = vscode.window;
+	workspace.onDidChangeTextDocument((event) => {
 		const document = event.document;
 		const text = document.getText();
 
-		// if (text.includes("todo")) {
-			const start = document.positionAt(0);
-			const end = document.positionAt(1);
+		const lineComment = /(?:^|\s)\/\/(.+?)$/gmsi;
+		const blockComment = /\/\*(.*?)\*\//gmsi;
+
+		const todoRegExLineComment = /todo.*/gmsi
+
+
+		let match;
+		while (match = todoRegExLineComment.exec(text)) {
+			console.log(match);
+
+			const start = document.positionAt(match.index);
+			const end = document.positionAt(match.index + match[0].length);
 			const range = new vscode.Range(start, end);
+	
+			const decorationType = window.createTextEditorDecorationType(decorationStyles.todo);
+	
+			window.activeTextEditor.setDecorations(decorationType, [range])
 
-			const decorationType = window.createTextEditorDecorationType({
-				backgroundColor: 'green',
-				border: '2px solid white',
-			});
+		}
 
-			console.log(range);
-
-			window.activeTextEditor.setDecorations(decorationType, [{ range }])
-		// }
 	});
 	
 }
