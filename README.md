@@ -7,7 +7,7 @@ Highlight comments based on certain keywords.
 Highlight comments with the keywords: todo, fixme, assignment and task. 
 
 
-![Highlight Examples](https://github.com/anderslatif/vscode-todo-highlighter/blob/master/example.png)
+![Highlight Examples](https://raw.githubusercontent.com/anderslatif/vscode-todo-highlighter/master/example.png)
 
 ## Extension Settings
 
@@ -23,7 +23,7 @@ https://github.com/anderslatif/vscode-todo-highlighter
 
 ## Release Notes
 
-### 0.0.1 - 0.0.3
+### 0.0.1 - 0.0.5
 
 Initial release of vscode-todo-highlighter
 

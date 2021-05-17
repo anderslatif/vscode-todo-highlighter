@@ -2,7 +2,7 @@
   "name": "vscode-todo-highlighter",
   "displayName": "vscode-todo-highlighter",
   "description": "Highlights Todos",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "andl",
   "repository": "https://github.com/anderslatif/vscode-todo-highlighter",
   "engines": {

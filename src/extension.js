@@ -18,7 +18,7 @@ function activate(context) {
 
 
 	window.onDidChangeActiveTextEditor((event) => {
-		decorate(event);	
+		decorate(event.document);	
 	});
 
 	workspace.onDidChangeConfiguration(() => {
@@ -26,7 +26,7 @@ function activate(context) {
 	})
 
 	workspace.onDidChangeTextDocument((event) => {
-		decorate(event);
+		decorate(event.document);
 	});
 	
 }
@@ -35,13 +35,17 @@ function setup() {
 	const settings = vscode.workspace.getConfiguration('todoHighlighter');
 	const decorationStyles = settings.get("decorations");
 	regexes = getRegexes(decorationStyles, vscode.window);
+
+	// decorate the already open file when opening the editor
+	// if other files are already open then clicking on their tab fires the openFile event
+	decorate(vscode.workspace.textDocuments[0]);
 }
 
-function decorate(event) {
-	const document = event.document;
-	const text = document.getText();
+function decorate(document) {
 
-	if (excludeFolders(document.fileName)) return;
+	if (!document || excludeFolders(document.fileName)) return;
+
+	const text = document.getText();
 
 	regexes.map(regex => {
 		let match;
