@@ -24,7 +24,6 @@ const INCLUDE = [
     '**/.*/**'
   ];
 
-
   module.exports = {
       EXCLUDE,
       INCLUDE

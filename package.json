@@ -3,6 +3,8 @@
   "displayName": "vscode-todo-highlighter",
   "description": "Highlights Todos",
   "version": "0.0.1",
+  "publisher": "andl",
+  "repository": "https://github.com/anderslatif/vscode-todo-highlighter",
   "engines": {
     "vscode": "^1.56.0"
   },
@@ -49,7 +51,7 @@
           "type": "object",
           "description": "Highlight decoration of assignments", 
           "default": {
-            "color": "#1f7ade"
+            "color": "#f97968"
           }
         }
       }
