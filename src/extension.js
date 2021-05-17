@@ -52,6 +52,8 @@ function decorate(event) {
 	const document = event.document;
 	const text = document.getText();
 
+	if (excludeFolders(document.fileName)) return;
+
 	regexes.map(regex => {
 		let match;
 		let decorationsArray = []
@@ -69,6 +71,20 @@ function decorate(event) {
 		vscode.window.activeTextEditor.setDecorations(style, decorationsArray)
 
 	});
+}
+
+function excludeFolders(filepath) {
+	if (
+		filepath.includes("node_modules")     ||
+		filepath.includes("bower_components") ||
+		filepath.includes("dist")             ||
+		filepath.includes("out")              ||
+		filepath.includes("build")            ||		
+		filepath.includes(".git")             ||		
+		filepath.includes(".min")		
+	) {
+		return true;
+	}
 }
 
 // this method is called when your extension is deactivated

@@ -7,7 +7,7 @@ Highlight comments based on certain keywords.
 Highlight comments with the keywords: todo, fixme, assignment and task. 
 
 
-[Highlight Examples](./example.png "Highlight Examples")
+![Highlight Examples](./example.png "Highlight Examples")
 
 ## Extension Settings
 
@@ -17,10 +17,11 @@ You can change the decoration style for a specific comment type like this:
 
 * `todoHighlighter.decorations.todo`: `{color: "#fff", backgroundColor: "rgba(0, 0, 0, 0.28)}`
 
+## Report Issues / See Source Code
+
+https://github.com/anderslatif/vscode-todo-highlighter
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
 
 ### 0.0.1
 
