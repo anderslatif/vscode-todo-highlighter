@@ -15,11 +15,7 @@ function activate(context) {
 	const workspace = vscode.workspace;
 	const window = vscode.window;
 
-	const settings = workspace.getConfiguration('todoHighlighter');
-	const decorationStyles = settings.get("decorations");
-	regexes = getRegexes(decorationStyles);
-
-	console.log(regexes);
+	setup();
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
@@ -32,26 +28,47 @@ function activate(context) {
 
 	context.subscriptions.push(disposable);
 
+	window.onDidChangeActiveTextEditor((event) => {
+		decorate(event);	
+	});
+
+	workspace.onDidChangeConfiguration(() => {
+		setup();
+	})
+
 	workspace.onDidChangeTextDocument((event) => {
-		const document = event.document;
-		const text = document.getText();
-
-		regexes.map(regex => {
-			let match;
-			while (match = regex.regex.exec(text)) {
-				const start = document.positionAt(match.index);
-				const end = document.positionAt(match.index + match[0].length);
-				const range = new vscode.Range(start, end);
-		
-				const decorationType = window.createTextEditorDecorationType(regex.style);
-				window.activeTextEditor.setDecorations(decorationType, [{ range }])
-			}
-		});
-
-
-
+		decorate(event);
 	});
 	
+}
+
+function setup() {
+	const settings = vscode.workspace.getConfiguration('todoHighlighter');
+	const decorationStyles = settings.get("decorations");
+	regexes = getRegexes(decorationStyles, vscode.window);
+}
+
+function decorate(event) {
+	const document = event.document;
+	const text = document.getText();
+
+	regexes.map(regex => {
+		let match;
+		let decorationsArray = []
+		const style = regex.style; 
+
+		while (match = regex.regex.exec(text)) {
+			const start = document.positionAt(match.index);
+			const end = document.positionAt(match.index + match[0].length);
+			const range = new vscode.Range(start, end);
+	
+			let decoration = { range };
+			decorationsArray.push(decoration);
+			
+		}
+		vscode.window.activeTextEditor.setDecorations(style, decorationsArray)
+
+	});
 }
 
 // this method is called when your extension is deactivated

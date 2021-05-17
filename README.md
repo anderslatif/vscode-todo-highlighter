@@ -4,17 +4,10 @@ Highlight comments based on certain keywords.
 
 ## Features
 
-Highlight comments of type:
+Highlight comments with the keywords: todo, fixme, assignment and task. 
 
-// 
 
-/* multiline comments */
-
-\<!-- HTML comments -->
-
-\# SQL and many other types of comment
-
-with keywords such as: todo, fixme, assignment and task. 
+[Highlight Examples](./example.png "Highlight Examples")
 
 ## Extension Settings
 

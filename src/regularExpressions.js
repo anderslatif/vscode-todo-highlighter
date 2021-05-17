@@ -17,12 +17,12 @@ const assignment = /(?:#|\/\/)\s*(assignment.*)|\/\*\s*(assignment[\s\S]*?)\*\/|
 
 
 
-function getRegexes(decorationStyles) {
+function getRegexes(decorationStyles, window) {
     return [
-        { regex: todo, style: decorationStyles.todo }, 
-        { regex: fixme, style: decorationStyles.fixme }, 
-        { regex: task, style: decorationStyles.task }, 
-        { regex: assignment, style: decorationStyles.assignment }
+        { regex: todo, style: window.createTextEditorDecorationType(decorationStyles.todo) }, 
+        { regex: fixme, style: window.createTextEditorDecorationType(decorationStyles.fixme) }, 
+        { regex: task, style: window.createTextEditorDecorationType(decorationStyles.task) }, 
+        { regex: assignment, style: window.createTextEditorDecorationType(decorationStyles.assignment) }
     ];
 }
 
