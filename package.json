@@ -2,7 +2,7 @@
   "name": "vscode-todo-highlighter",
   "displayName": "vscode-todo-highlighter",
   "description": "Highlights Todos",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "publisher": "andl",
   "repository": "https://github.com/anderslatif/vscode-todo-highlighter",
   "engines": {
@@ -12,6 +12,7 @@
     "Other"
   ],
   "activationEvents": [
+    "*",
     "onCommand:vscode-todo-highlighter.todoHighlighter"
   ],
   "main": "./src/extension.js",
@@ -44,7 +45,7 @@
           "type": "object",
           "description": "Highlight decoration of tasks", 
           "default": {
-            "color": "#1f7ade"
+            "color": "#1685fc"
           }
         },
         "todoHighlighter.decorations.assignment": {
